@@ -1,0 +1,77 @@
+{
+  "name": "vscode-snippets",
+  "version": "0.0.0",
+  "description": "Snippets extracted from Visual Studio Code",
+  "contributes": {
+    "snippets": [
+      {
+        "language": "markdown",
+        "path": "./snippets/markdown.json"
+      },
+      {
+        "language": "coffeescript",
+        "path": "./snippets/coffeescript.json"
+      },
+      {
+        "language": "vb",
+        "path": "./snippets/vb.json"
+      },
+      {
+        "language": "javascript",
+        "path": "./snippets/javascript.json"
+      },
+      {
+        "language": "javascriptreact",
+        "path": "./snippets/javascript.json"
+      },
+      {
+        "language": "csharp",
+        "path": "./snippets/csharp.json"
+      },
+      {
+        "language": "bat",
+        "path": "./snippets/batchfile.json"
+      },
+      {
+        "language": "typescript",
+        "path": "./snippets/typescript.json"
+      },
+      {
+        "language": "typescriptreact",
+        "path": "./snippets/typescript.json"
+      },
+      {
+        "language": "php",
+        "path": "./snippets/php.json"
+      },
+      {
+        "language": "fsharp",
+        "path": "./snippets/fsharp.json"
+      },
+      {
+        "language": "groovy",
+        "path": "./snippets/groovy.json"
+      },
+      {
+        "language": "c",
+        "path": "./snippets/c.json"
+      },
+      {
+        "language": "cpp",
+        "path": "./snippets/cpp.json"
+      },
+      {
+        "language": "html",
+        "path": "./snippets/html.json"
+      },
+      {
+        "language": "swift",
+        "path": "./snippets/swift.json"
+      },
+      {
+        "language": "java",
+        "path": "./snippets/java.json"
+      }
+    ]
+  }
+}
