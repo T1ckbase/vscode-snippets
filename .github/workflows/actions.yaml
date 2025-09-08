@@ -26,9 +26,49 @@ jobs:
       - run: |
           mkdir -p snippets
           find vscode/extensions/ -type f -name "*.code-snippets" -exec sh -c 'cp "$1" "snippets/$(basename "$1" .code-snippets).json"' _ {} \;
-          rm -rf vscode
+
+          if [ ! -d "vscode/extensions/" ]; then
+            echo "Error: vscode/extensions/ directory not found"
+            exit 1
+          fi
+
+          all_snippets="["
+          first=true
+
+          for pkg in $(find vscode/extensions/ -type f -name "package.json"); do
+            if jq -e '.contributes.snippets' "$pkg" > /dev/null 2>&1; then
+              echo "Processing: $pkg"
+              
+              snippets=$(jq -c '.contributes.snippets[] | if .path then .path = (.path | gsub("\\.code-snippets$"; ".json")) else . end' "$pkg")
+              
+              while IFS= read -r snippet; do
+                if [ "$first" = true ]; then
+                  all_snippets="${all_snippets}${snippet}"
+                  first=false
+                else
+                  all_snippets="${all_snippets},${snippet}"
+                fi
+              done <<< "$snippets"
+            fi
+          done
+
+          all_snippets="${all_snippets}]"
+
+          jq -n --argjson contributes "$all_snippets" '{
+            "name": "vscode-snippets",
+            "version": "0.0.0",
+            "description": "Snippets extracted from Visual Studio Code",
+            "contributes": {
+              "snippets": $contributes
+            }
+          }' > package.json
+
+          echo "Final snippets count: $(echo "$all_snippets" | jq length)"
+          echo "Generated: package.json"
+          
 
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add snippets/*.json
+          git add package.json
           git diff-index --quiet HEAD || (git commit -m "Update snippets" && git push origin main)
