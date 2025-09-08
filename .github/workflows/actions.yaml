@@ -1,0 +1,34 @@
+name: Update snippets
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 8 * * 3' 
+
+jobs:
+  update-snippets:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Checkout VSCode
+        uses: actions/checkout@v4
+        with:
+          repository: microsoft/vscode
+          path: vscode
+
+      - run: |
+          mkdir -p snippets
+          find vscode/extensions/ -type f -name "*.code-snippets" -exec sh -c 'cp "$1" "snippets/$(basename "$1" .code-snippets).json"' _ {} \;
+          rm -rf vscode
+
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add snippets/*.json
+          git diff-index --quiet HEAD || (git commit -m "Update snippets" && git push origin main)
