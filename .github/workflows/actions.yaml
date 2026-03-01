@@ -61,7 +61,7 @@ jobs:
             "contributes": {
               "snippets": $contributes
             }
-          }' > package.json
+          }' | jq -S . > package.json
 
           echo "Final snippets count: $(echo "$all_snippets" | jq length)"
           echo "Generated: package.json"
