@@ -1,7 +1,4 @@
 {
-  "name": "vscode-snippets",
-  "version": "0.0.0",
-  "description": "Snippets extracted from Visual Studio Code",
   "contributes": {
     "snippets": [
       {
@@ -73,5 +70,8 @@
         "path": "./snippets/groovy.json"
       }
     ]
-  }
+  },
+  "description": "Snippets extracted from Visual Studio Code",
+  "name": "vscode-snippets",
+  "version": "0.0.0"
 }
