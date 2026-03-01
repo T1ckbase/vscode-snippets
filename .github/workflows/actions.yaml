@@ -23,7 +23,8 @@ jobs:
           repository: microsoft/vscode
           path: vscode
 
-      - run: |
+      - name: Extract Snippets
+        run: |
           mkdir -p snippets
           find vscode/extensions/ -type f -name "*.code-snippets" -exec sh -c 'cp "$1" "snippets/$(basename "$1" .code-snippets).json"' _ {} \;
 
