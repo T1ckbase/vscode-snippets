@@ -5,16 +5,32 @@
   "contributes": {
     "snippets": [
       {
-        "language": "javascript",
-        "path": "./snippets/javascript.json"
+        "language": "java",
+        "path": "./snippets/java.json"
       },
       {
-        "language": "javascriptreact",
-        "path": "./snippets/javascript.json"
+        "language": "swift",
+        "path": "./snippets/swift.json"
       },
       {
         "language": "php",
         "path": "./snippets/php.json"
+      },
+      {
+        "language": "fsharp",
+        "path": "./snippets/fsharp.json"
+      },
+      {
+        "language": "coffeescript",
+        "path": "./snippets/coffeescript.json"
+      },
+      {
+        "language": "html",
+        "path": "./snippets/html.json"
+      },
+      {
+        "language": "vb",
+        "path": "./snippets/vb.json"
       },
       {
         "language": "c",
@@ -25,6 +41,10 @@
         "path": "./snippets/cpp.json"
       },
       {
+        "language": "bat",
+        "path": "./snippets/batchfile.json"
+      },
+      {
         "language": "typescript",
         "path": "./snippets/typescript.json"
       },
@@ -33,44 +53,24 @@
         "path": "./snippets/typescript.json"
       },
       {
-        "language": "fsharp",
-        "path": "./snippets/fsharp.json"
+        "language": "markdown",
+        "path": "./snippets/markdown.json"
       },
       {
-        "language": "java",
-        "path": "./snippets/java.json"
+        "language": "javascript",
+        "path": "./snippets/javascript.json"
       },
       {
-        "language": "html",
-        "path": "./snippets/html.json"
-      },
-      {
-        "language": "swift",
-        "path": "./snippets/swift.json"
-      },
-      {
-        "language": "coffeescript",
-        "path": "./snippets/coffeescript.json"
-      },
-      {
-        "language": "bat",
-        "path": "./snippets/batchfile.json"
-      },
-      {
-        "language": "vb",
-        "path": "./snippets/vb.json"
-      },
-      {
-        "language": "groovy",
-        "path": "./snippets/groovy.json"
+        "language": "javascriptreact",
+        "path": "./snippets/javascript.json"
       },
       {
         "language": "csharp",
         "path": "./snippets/csharp.json"
       },
       {
-        "language": "markdown",
-        "path": "./snippets/markdown.json"
+        "language": "groovy",
+        "path": "./snippets/groovy.json"
       }
     ]
   }
