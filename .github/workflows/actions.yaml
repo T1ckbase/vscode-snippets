@@ -3,7 +3,7 @@ name: Update snippets
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 8 1 * *' 
+    - cron: "0 8 1 * *"
 
 jobs:
   update-snippets:
@@ -15,10 +15,10 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Checkout VSCode
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           repository: microsoft/vscode
           path: vscode
@@ -65,10 +65,10 @@ jobs:
 
           echo "Final snippets count: $(echo "$all_snippets" | jq length)"
           echo "Generated: package.json"
-          
 
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
+
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
           git add snippets/*.json
           git add package.json
           git diff-index --quiet HEAD || (git commit -m "Update snippets" && git push origin main)
