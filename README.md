@@ -1,5 +1,7 @@
 # vscode-snippets
 
+[![Update snippets](https://github.com/T1ckbase/vscode-snippets/actions/workflows/update-snippets.yaml/badge.svg)](https://github.com/T1ckbase/vscode-snippets/actions/workflows/update-snippets.yaml)
+
 These snippets are extracted from [Visual Studio Code](https://github.com/microsoft/vscode).
 
 ## Setup
