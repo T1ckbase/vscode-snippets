@@ -2,7 +2,7 @@
 
 These snippets are extracted from [Visual Studio Code](https://github.com/microsoft/vscode).
 
-# Setup
+## Setup
 
 [mini.snippets](https://github.com/nvim-mini/mini.snippets)
 
@@ -23,6 +23,6 @@ require('mini.snippets').setup({
 })
 ```
 
-# LICENSE
+## LICENSE
 
-The snippets are extracted from [Visual Studio Code](https://github.com/microsoft/vscode) and are licensed under the MIT License.
+These snippets are adapted from [Visual Studio Code](https://github.com/microsoft/vscode) and are licensed under the MIT License.

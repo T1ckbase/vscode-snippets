@@ -16,6 +16,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
 
       - name: Checkout VSCode
         uses: actions/checkout@v6
@@ -24,52 +26,21 @@ jobs:
           path: vscode
 
       - name: Extract Snippets
+        env:
+          GIT_AUTHOR_NAME: github-actions[bot]
+          GIT_AUTHOR_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
+          GIT_COMMITTER_NAME: github-actions[bot]
+          GIT_COMMITTER_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
         run: |
-          mkdir -p snippets
-          find vscode/extensions/ -type f -name "*.code-snippets" -exec sh -c 'cp "$1" "snippets/$(basename "$1" .code-snippets).json"' _ {} \;
+          chmod +x ./script.sh
+          ./script.sh
 
-          if [ ! -d "vscode/extensions/" ]; then
-            echo "Error: vscode/extensions/ directory not found"
-            exit 1
+          git add -A snippets package.json
+
+          if git diff --cached --quiet; then
+            echo "No changes, skipping commit"
+            exit 0
           fi
 
-          all_snippets="["
-          first=true
-
-          for pkg in $(find vscode/extensions/ -type f -name "package.json"); do
-            if jq -e '.contributes.snippets' "$pkg" > /dev/null 2>&1; then
-              echo "Processing: $pkg"
-              
-              snippets=$(jq -c '.contributes.snippets[] | if .path then .path = (.path | gsub("\\.code-snippets$"; ".json")) else . end' "$pkg")
-              
-              while IFS= read -r snippet; do
-                if [ "$first" = true ]; then
-                  all_snippets="${all_snippets}${snippet}"
-                  first=false
-                else
-                  all_snippets="${all_snippets},${snippet}"
-                fi
-              done <<< "$snippets"
-            fi
-          done
-
-          all_snippets="${all_snippets}]"
-
-          jq -n --argjson contributes "$all_snippets" '{
-            "name": "vscode-snippets",
-            "version": "0.0.0",
-            "description": "Snippets extracted from Visual Studio Code",
-            "contributes": {
-              "snippets": $contributes
-            }
-          }' | jq -S . > package.json
-
-          echo "Final snippets count: $(echo "$all_snippets" | jq length)"
-          echo "Generated: package.json"
-
-
-          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          git add snippets/*.json
-          git add package.json
-          git diff-index --quiet HEAD || (git commit -m "Update snippets" && git push origin main)
+          git commit -m "Update snippets"
+          git push
