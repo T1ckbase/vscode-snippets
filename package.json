@@ -2,20 +2,12 @@
   "contributes": {
     "snippets": [
       {
-        "language": "typescript",
-        "path": "./snippets/typescript.json"
+        "language": "c",
+        "path": "./snippets/c.json"
       },
       {
-        "language": "typescriptreact",
-        "path": "./snippets/typescript.json"
-      },
-      {
-        "language": "php",
-        "path": "./snippets/php.json"
-      },
-      {
-        "language": "markdown",
-        "path": "./snippets/markdown.json"
+        "language": "cpp",
+        "path": "./snippets/cpp.json"
       },
       {
         "language": "javascript",
@@ -26,48 +18,56 @@
         "path": "./snippets/javascript.json"
       },
       {
-        "language": "html",
-        "path": "./snippets/html.json"
+        "language": "fsharp",
+        "path": "./snippets/fsharp.json"
       },
       {
         "language": "coffeescript",
         "path": "./snippets/coffeescript.json"
       },
       {
-        "language": "swift",
-        "path": "./snippets/swift.json"
-      },
-      {
-        "language": "fsharp",
-        "path": "./snippets/fsharp.json"
-      },
-      {
-        "language": "c",
-        "path": "./snippets/c.json"
-      },
-      {
-        "language": "cpp",
-        "path": "./snippets/cpp.json"
-      },
-      {
-        "language": "groovy",
-        "path": "./snippets/groovy.json"
+        "language": "csharp",
+        "path": "./snippets/csharp.json"
       },
       {
         "language": "vb",
         "path": "./snippets/vb.json"
       },
       {
-        "language": "bat",
-        "path": "./snippets/batchfile.json"
+        "language": "swift",
+        "path": "./snippets/swift.json"
+      },
+      {
+        "language": "markdown",
+        "path": "./snippets/markdown.json"
       },
       {
         "language": "java",
         "path": "./snippets/java.json"
       },
       {
-        "language": "csharp",
-        "path": "./snippets/csharp.json"
+        "language": "html",
+        "path": "./snippets/html.json"
+      },
+      {
+        "language": "typescript",
+        "path": "./snippets/typescript.json"
+      },
+      {
+        "language": "typescriptreact",
+        "path": "./snippets/typescript.json"
+      },
+      {
+        "language": "bat",
+        "path": "./snippets/batchfile.json"
+      },
+      {
+        "language": "groovy",
+        "path": "./snippets/groovy.json"
+      },
+      {
+        "language": "php",
+        "path": "./snippets/php.json"
       }
     ]
   },
