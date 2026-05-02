@@ -9,7 +9,7 @@ fi
 rm -rf snippets
 mkdir -p snippets
 
-find vscode/extensions -type f -name '*.code-snippets' -print0 |
+find vscode/extensions -name ".*" -prune -o -type f -name '*.code-snippets' -print0 |
 while IFS= read -r -d '' file; do
   cp -- "$file" "snippets/$(basename "${file%.code-snippets}").json"
 done
@@ -17,7 +17,7 @@ done
 tmp_snippets=$(mktemp)
 trap 'rm -f "$tmp_snippets"' EXIT
 
-find vscode/extensions/ -type f -name "package.json" -print0 |
+find vscode/extensions -name ".*" -prune -o -type f -name "package.json" -print0 |
 while IFS= read -r -d '' pkg; do
   snippets=$(jq -c '
     (.contributes.snippets? // [])
