@@ -7,11 +7,10 @@ on:
 
 jobs:
   update-snippets:
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-
     permissions:
       contents: write
+
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
@@ -19,21 +18,24 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Checkout VSCode
+      - name: Checkout VS Code
         uses: actions/checkout@v6
         with:
           repository: microsoft/vscode
           path: vscode
 
       - name: Extract Snippets
-        env:
-          GIT_AUTHOR_NAME: github-actions[bot]
-          GIT_AUTHOR_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
-          GIT_COMMITTER_NAME: github-actions[bot]
-          GIT_COMMITTER_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
         run: |
+          set -euo pipefail
           chmod +x ./script.sh
           ./script.sh
+
+      - name: Commit
+        run: |
+          set -euo pipefail
+
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
 
           git add -A snippets package.json
 
@@ -43,4 +45,7 @@ jobs:
           fi
 
           git commit -m "Update snippets"
+          git pull --rebase origin main
           git push
+
+    timeout-minutes: 10
